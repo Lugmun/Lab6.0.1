@@ -6,7 +6,7 @@ import other.Command;
 
 import java.io.Serializable;
 
-public class SerializedArgumentCommand implements Serializable {
+public class SerializedArgumentCommand implements Serializable, SerializedCommand {
 
     private Long id;
     private Command<Long,Object> command;

@@ -1,7 +1,6 @@
 package Commands;
 
 import CityPackage.CityHashtable;
-import other.Terminal;
 
 import java.io.File;
 import java.io.FileReader;
@@ -9,7 +8,7 @@ import java.util.Scanner;
 
 public class ExecuteScript {
 
-    private Terminal fileTerminal;
+    /*private Terminal fileTerminal;
     private String msg;
 
     public ExecuteScript (Terminal t) {
@@ -42,4 +41,6 @@ public class ExecuteScript {
     public String getMessage() {
         return this.msg;
     }
+
+     */
 }

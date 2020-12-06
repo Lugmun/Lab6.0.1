@@ -32,8 +32,9 @@ public class Terminal {
     private PrintFieldDescendingGovernor print_field_descending_governor = new PrintFieldDescendingGovernor();
 
 
-    public Terminal(CityHashtable hashtable){
+    public Terminal(CityHashtable hashtable, RequestManager request){
         this.hashtable = hashtable;
+        this.request = request;
         System.out.println("Терминал успешно создан");
     }
     /**
@@ -56,7 +57,7 @@ public class Terminal {
     //}
 
     public String start() throws IOException {
-            return startWithCommand(request.decrypt(request.getObject(request.clientSocket)));
+        return startWithCommand(this.request.decrypt(this.request.getObject()));
     }
 
     private String startWithCommand(Command command){

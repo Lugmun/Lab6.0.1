@@ -38,7 +38,7 @@ public class FieldOfCityChecker implements Checker {
 
         boolean bool = false;
 
-        City newCity = new City(null, null, null, 0, null, null, null, null, null);
+        City newCity = new City();
 
         if (nextRecord.length == 10) {
 

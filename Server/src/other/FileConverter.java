@@ -2,7 +2,10 @@ package other;
 
 import Checkers.FieldOfCityChecker;
 import CityPackage.*;
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 
 import java.io.File;
 import java.io.FileReader;
@@ -38,7 +41,9 @@ public class FileConverter {
         }
 
         try(FileReader fr = new FileReader(csvPath)){
-            CSVReader csvReader = new CSVReader(fr);
+            CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
+            CSVReader csvReader = new CSVReaderBuilder(fr).withCSVParser(parser).build();
+            //CSVReader csvReader = new CSVReader(fr);
 
 
 

@@ -6,7 +6,7 @@ import other.Command;
 
 import java.io.Serializable;
 
-public class SerializedSimplyCommand implements Serializable {
+public class SerializedSimplyCommand implements Serializable, SerializedCommand {
     private Command<Object,Object> command;
 
     public SerializedSimplyCommand(Command<Object,Object> command) {

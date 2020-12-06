@@ -1,7 +1,7 @@
 import ServerPackage.Server;
 import other.FileConverter;
 
-public class Main {
+public class ServerMain {
     public static void main(String[] args) {
 
         FileConverter fc = new FileConverter();
@@ -12,7 +12,7 @@ public class Main {
                 //Terminal t = new Terminal(fc.hashtable);
                 //t.start();
                 Server s = new Server(fc.hashtable);
-                s.establishConnection();
+                s.start();
             } else {
                 System.out.println("Путь не найден");
             }

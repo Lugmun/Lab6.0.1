@@ -15,34 +15,38 @@ import java.net.Socket;
 
 public class RequestManager implements Serializable {
 
-    Object o = null;
+    Object object;
     public Socket clientSocket;
     Command command;
     //Command<Integer,Object> bigCommand1;
     //Command<Integer,City> bigCommand2;
 
 
-    public RequestManager(Socket clientSocket) {
+    public RequestManager(Socket clientSocket, Object object) {
         this.clientSocket = clientSocket;
+        this.object = object;
     }
 
+    public Object getObject() {
+        return object;
+    }
     //public void toCommand(Object T) {
     //}
 
     //формирование объекта из stream'а
-    public Object getObject(Socket clientSocket) {
-        try(ObjectInputStream input =
-                    new ObjectInputStream(
-                            clientSocket.getInputStream()))
-        {
-
-            o = input.readObject();
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return o;
-    }
+    //public Object getObject(Socket clientSocket) {
+    //    try(ObjectInputStream input =
+    //                new ObjectInputStream(
+    //                        clientSocket.getInputStream()))
+    //    {
+//
+    //        o = input.readObject();
+//
+    //    } catch (IOException | ClassNotFoundException e) {
+    //        e.printStackTrace();
+    //    }
+    //    return o;
+    //}
 
     //десериализация
     public Command decrypt(Object o) throws IOException {
@@ -80,7 +84,7 @@ public class RequestManager implements Serializable {
 
     //обработка запроса
     public String processing(CityHashtable hashtable) throws IOException {
-        Terminal t = new Terminal(hashtable);
+        Terminal t = new Terminal(hashtable, this);
         return t.start();
     }
 }

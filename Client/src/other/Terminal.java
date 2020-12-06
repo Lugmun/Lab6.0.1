@@ -3,14 +3,14 @@ package other;
 import CityPackage.City;
 import CityPackage.CityHashtable;
 import Commands.*;
-import ServerPackage.Server;
+//import ServerPackage.Server;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Terminal {
 
-    private Server server;
+    //private Server server;
     private RequestManager request;
     private Respond respond = new Respond();
     private CityHashtable hashtable;
@@ -23,7 +23,7 @@ public class Terminal {
     private RemoveKey remove_key = new RemoveKey();
     private Clear clear = new Clear();
     private Save save = new Save();
-    private ExecuteScript executeScript = new ExecuteScript(this);
+    //private ExecuteScript executeScript = new ExecuteScript(this);
     private ReplaceIfGreater replace_if_greater = new ReplaceIfGreater();
     private ReplaceIfLower replace_if_lower = new ReplaceIfLower();
     private RemoveLowerKey remove_lower_key = new RemoveLowerKey();
