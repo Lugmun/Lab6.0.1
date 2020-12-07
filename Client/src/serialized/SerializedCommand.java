@@ -1,4 +1,4 @@
-package Serialized;
+package serialized;
 
 public interface SerializedCommand {
 }

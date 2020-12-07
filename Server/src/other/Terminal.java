@@ -4,12 +4,14 @@ import CityPackage.City;
 import Commands.*;
 import CityPackage.CityHashtable;
 import ServerPackage.Server;
+import com.sun.deploy.util.SessionState;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Terminal {
 
+    private ClientTerminal clientTerminal;
     private Server server;
     private RequestManager request;
     private Respond respond = new Respond();
@@ -23,7 +25,7 @@ public class Terminal {
     private RemoveKey remove_key = new RemoveKey();
     private Clear clear = new Clear();
     private Save save = new Save();
-    private ExecuteScript executeScript = new ExecuteScript(this);
+    private ExecuteScript executeScript = new ExecuteScript(clientTerminal);
     private ReplaceIfGreater replace_if_greater = new ReplaceIfGreater();
     private ReplaceIfLower replace_if_lower = new ReplaceIfLower();
     private RemoveLowerKey remove_lower_key = new RemoveLowerKey();
@@ -62,7 +64,6 @@ public class Terminal {
 
     private String startWithCommand(Command command){
         System.out.println("Сервер в процессе исполнения команды: " + command.getCommandName());
-        //if (arr2 == null){
             switch (command.getCommandName()){
                 case "exit":
                     System.out.println("До свидания");
@@ -160,9 +161,9 @@ public class Terminal {
                     break;
 
 
-                //case "execute_script":
-                //    executeScript.execute(hashtable,arr2.trim());
-                //    break;
+                case "execute_script":
+                    executeScript.execute(hashtable, (String) command.getArgument());
+                    break;
 
                 default:
                     asRespond = "Неизвестная команда, напечатайте 'help' для просмотра списка команд";

@@ -14,9 +14,11 @@ public class Show implements Command {
         if (hashtable.isEmpty()){
             msg="Коллекция пуста";
         }else{
-            for (City c: hashtable.values()){
-                msg=c.customToString() + "\n" +
+            String msg = "";
+            for (City c : hashtable.values()){
+                msg = "\n" + c.customToString() + "\n" +
                 "--------------------------";
+                this.msg = msg + this.msg;
             }
         }
     }

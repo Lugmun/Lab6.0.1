@@ -2,10 +2,10 @@ package other;
 
 import CityPackage.City;
 import CityPackage.CityHashtable;
-import Serialized.SerializedArgumentCommand;
-import Serialized.SerializedArgumentObjectCommand;
-import Serialized.SerializedExecuteScriptCommand;
-import Serialized.SerializedSimplyCommand;
+import serialized.SerializedArgumentCommand;
+import serialized.SerializedArgumentObjectCommand;
+import serialized.SerializedExecuteScriptCommand;
+import serialized.SerializedSimplyCommand;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

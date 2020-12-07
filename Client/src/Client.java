@@ -64,30 +64,38 @@ public class Client {
                     //System.out.println("Клиент запущен");
 
 
-                    //terminal.start();
-                    //Serializer serializer = new Serializer();
-                    //Serializer.serialize(terminal.start());
-
                     SocketChannel socketChannel = SocketChannel.open();
-                    socketChannel.configureBlocking(true);
+                    //socketChannel.configureBlocking(false);
                     boolean isConnected = socketChannel.connect(a);
                     if (isConnected) {
                         System.out.println("connected");
                         ClientTerminal terminal = new ClientTerminal();
-                        //f = ByteBuffer.allocate(1024 * 1024);
-                        ByteBuffer f = ByteBuffer.wrap(Serializer.serialize(terminal.start()));
-                        f.flip();
-                        socketChannel.write(f);
+
+                        ByteBuffer forWrite = ByteBuffer.allocate(1024*1024);
+                        forWrite = ByteBuffer.wrap(Serializer.serialize(terminal.start()));
+                        forWrite.flip();
+                        //socketChannel.write(f);
+                        socketChannel.socket().getOutputStream().write(forWrite.array());
+                        socketChannel.socket().getOutputStream().flush();
+                        //socketChannel.socket().getOutputStream().close();
 
 
 
-                        f.clear();
-                        socketChannel.read(f);
-                        ByteArrayInputStream bais = new ByteArrayInputStream(f.array());
-                        ObjectInputStream ois = new ObjectInputStream(bais);
-                        Respond respond = (Respond) ois.readObject();
-                        ois.close(); bais.close();
+                        //f.clear();
+                        System.out.println(forWrite.clear());
+
+                        ByteBuffer forRead = ByteBuffer.allocate(1024*3);
+
+                        System.out.println(socketChannel.read(forRead));
+                        forRead.flip();
+                        Object resp = Serializer.deserialize(forRead.array());
+                        Respond respond = (Respond) resp;
+                        System.out.println("принял ответ, вывожу");
+
+
                         System.out.println(respond.getMessage());
+
+                        socketChannel.close();
 
                     }
                     else {

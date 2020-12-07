@@ -3,6 +3,7 @@ package other;
 import java.io.Serializable;
 
 public class Command<T, P> implements Serializable {
+    static final long serialVersionUID = -407699740872077328L;
     private String commandName;
     private T argument;
     private P additional;

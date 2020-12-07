@@ -1,17 +1,16 @@
 package other;
 
 import Checkers.FieldOfCityChecker;
-import Commands.*;
-
 import CityPackage.City;
-import serialized.*;
+import Commands.*;
+import serialized.*;//.SerializedArgumentCommand;
 
 import java.util.Scanner;
 
 public class ClientTerminal {
 
     //private CityHashtable hashtable;
-    SerializedCommand serializedCommand;
+    private SerializedCommand serializedCommand;
     //SerializedSimplyCommand simple;
     //SerializedArgumentCommand difficult;
     //SerializedArgumentObjectCommand moreDifficult;
@@ -70,7 +69,7 @@ public class ClientTerminal {
     //
     //}
 
-    private SerializedCommand commandManager(String arr1, String arr2){
+    public SerializedCommand commandManager(String arr1, String arr2){
         if (arr2 == null){
             switch (arr1){
                 //case "exit":
@@ -86,7 +85,7 @@ public class ClientTerminal {
 
                 case "help":
                     command.setCommandName(arr1);
-                    serializedCommand = new SerializedSimplyCommand(command);
+                    serializedCommand =  new SerializedSimplyCommand(command);
 
                     //System.out.println("help : вывести справку по доступным командам");                                                                          //complete
                     //System.out.println("info : вывести в стандартный поток вывода информацию о коллекции");                                                      //complete
@@ -108,12 +107,12 @@ public class ClientTerminal {
 
                 case "info":
                     command.setEverything(arr1, null, null);
-                    serializedCommand = new SerializedSimplyCommand(command);
+                    serializedCommand =  new SerializedSimplyCommand(command);
                     break;
 
                 case "show":
                     command.setEverything(arr1, null, null);
-                    serializedCommand = new SerializedSimplyCommand(command);
+                    serializedCommand =  new SerializedSimplyCommand(command);
                     break;
 
                 case "clear":
@@ -140,12 +139,12 @@ public class ClientTerminal {
 
                 case "average_of_meters_above_sea_level":
                     command.setEverything(arr1, null, null);
-                    serializedCommand = new SerializedSimplyCommand(command);
+                    serializedCommand =  new SerializedSimplyCommand(command);
                     break;
 
                 case "print_field_ascending_government":
                     command.setEverything(arr1, null, null);
-                    serializedCommand = new SerializedSimplyCommand(command);
+                    serializedCommand =  new SerializedSimplyCommand(command);
                     break;
 
                 case "print_field_descending_governor":
@@ -176,7 +175,7 @@ public class ClientTerminal {
                             FieldOfCityChecker fieldOfCityChecker = new FieldOfCityChecker();
                             City cityToPut = fieldOfCityChecker.checkEverything(nextRecord, -1);
                             command.setEverything(arr1, neededId, cityToPut);
-                            serializedCommand = new SerializedArgumentObjectCommand(command);
+                            serializedCommand =  new SerializedArgumentObjectCommand(command);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -207,7 +206,7 @@ public class ClientTerminal {
                     try {
                         long idToRemove = Long.parseLong(arr2);
                         command.setEverything(arr1, idToRemove, null);
-                        serializedCommand = new SerializedArgumentCommand(command);
+                        serializedCommand =  new SerializedArgumentCommand(command);
                     }
                     catch (NumberFormatException e) {
                         System.out.println("Введенное значение не числового формата");
@@ -224,7 +223,7 @@ public class ClientTerminal {
                         FieldOfCityChecker fieldOfCityChecker = new FieldOfCityChecker();
                         City cityToPut = fieldOfCityChecker.checkEverything(nextRecord, -1);
                         command.setEverything(arr1, presentId, cityToPut);
-                        serializedCommand = new SerializedArgumentObjectCommand(command);
+                        serializedCommand =  new SerializedArgumentObjectCommand(command);
                     } catch (NumberFormatException e) {
                         System.out.println("Введенное значение не числового формата");
                     }
@@ -239,7 +238,7 @@ public class ClientTerminal {
                         FieldOfCityChecker fieldOfCityChecker = new FieldOfCityChecker();
                         City cityToPut = fieldOfCityChecker.checkEverything(nextRecord, -1);
                         command.setEverything(arr1, presentId, cityToPut);
-                        serializedCommand = new SerializedArgumentObjectCommand(command);
+                        serializedCommand =  new SerializedArgumentObjectCommand(command);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -250,7 +249,7 @@ public class ClientTerminal {
                     try {
                         long idToRemove = Long.parseLong(arr2);
                         command.setEverything(arr1, idToRemove, null);
-                        serializedCommand = new SerializedArgumentCommand(command);
+                        serializedCommand =  new SerializedArgumentCommand(command);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

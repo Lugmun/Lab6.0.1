@@ -3,27 +3,25 @@ package other;
 import CityPackage.City;
 import CityPackage.CityHashtable;
 
-import Serialized.SerializedArgumentCommand;
-import Serialized.SerializedArgumentObjectCommand;
-import Serialized.SerializedExecuteScriptCommand;
-import Serialized.SerializedSimplyCommand;
+import serialized.SerializedArgumentCommand;
+import serialized.SerializedArgumentObjectCommand;
+import serialized.SerializedExecuteScriptCommand;
+import serialized.SerializedSimplyCommand;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.net.Socket;
 
 public class RequestManager implements Serializable {
 
     Object object;
-    public Socket clientSocket;
+    //public Socket clientSocket;
     Command command;
     //Command<Integer,Object> bigCommand1;
     //Command<Integer,City> bigCommand2;
 
 
-    public RequestManager(Socket clientSocket, Object object) {
-        this.clientSocket = clientSocket;
+    public RequestManager(/*Socket clientSocket,*/ Object object) {
+        //this.clientSocket = clientSocket;
         this.object = object;
     }
 
@@ -53,6 +51,7 @@ public class RequestManager implements Serializable {
         if (o instanceof SerializedSimplyCommand) {
             SerializedSimplyCommand simplyCommand = (SerializedSimplyCommand) o;
             Command<Object,Object> command = (Command<Object,Object>) simplyCommand.getCommand();
+            this.command = command;
             //return command;
             //String arg = "";
             //command.execute(clientSocket);
@@ -61,6 +60,7 @@ public class RequestManager implements Serializable {
         if (o instanceof SerializedArgumentCommand) {
             SerializedArgumentCommand argumentCommand = (SerializedArgumentCommand) o;
             Command<Long,Object> command = (Command<Long,Object>) argumentCommand.getCommand();
+            this.command = command;
             //return bigCommand1;
             //Integer arg = bigCommand1.getArgument();
             //bigCommand.execute(arg, clientSocket);
@@ -69,6 +69,7 @@ public class RequestManager implements Serializable {
         if (o instanceof SerializedArgumentObjectCommand) {
             SerializedArgumentObjectCommand argumentObjectCommand = (SerializedArgumentObjectCommand) o;
             Command<Long,City> command = (Command<Long,City>) argumentObjectCommand.getCommand();
+            this.command = command;
             //return bigCommand2;
             //City city = argumentObjectCommand.getObject();
             //bigCommand.execute(arg, clientSocket);
@@ -77,6 +78,7 @@ public class RequestManager implements Serializable {
         if (o instanceof SerializedExecuteScriptCommand) {
             SerializedExecuteScriptCommand executeScriptCommand = (SerializedExecuteScriptCommand) o;
             Command<String,Object> command = executeScriptCommand.getCommand();
+            this.command = command;
             //command.execute(combinedCommand, socket);
         }
         return command;

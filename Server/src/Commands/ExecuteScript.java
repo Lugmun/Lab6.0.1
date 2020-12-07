@@ -1,19 +1,25 @@
 package Commands;
 
+import CityPackage.City;
 import CityPackage.CityHashtable;
-import other.Terminal;
+import other.*;
 
+import java.awt.font.NumericShaper;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
 
 public class ExecuteScript {
 
+    private ClientTerminal fileClientTerminal;
     private Terminal fileTerminal;
-    private String msg;
+    private String msg = "";
+    private RequestManager request;
+    private Respond respond;
+    //private CityHashtable hashtable;
 
-    public ExecuteScript (Terminal t) {
-        this.fileTerminal = t;
+    public ExecuteScript (ClientTerminal t) {
+        this.fileClientTerminal = t;
     }
 
 
@@ -28,9 +34,15 @@ public class ExecuteScript {
                 String nextLine = scanner.nextLine().trim();
                 String[] nextRecord = nextLine.split(" ", 2);
                 if (nextRecord.length == 1) {
-                    fileTerminal.start();
+                    //fileClientTerminal.start();
+                    this.request = new RequestManager(
+                            fileClientTerminal.commandManager(nextRecord[0], null));
+                    this.respond = new Respond(this.request.processing(city));
                 } else {
-                    fileTerminal.start();
+                    this.request = new RequestManager(
+                            fileClientTerminal.commandManager(nextRecord[0], nextRecord[1]));
+                    this.respond = new Respond(this.request.processing(city));
+
                 }
             }
 

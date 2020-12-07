@@ -1,13 +1,12 @@
-package Serialized;
+package serialized;
 
 //import ClientPackage.Command;
 
+;
 import CityPackage.City;
 import other.Command;
 
 import java.io.Serializable;
-
-;
 
 public class SerializedArgumentObjectCommand implements Serializable, SerializedCommand {
 
